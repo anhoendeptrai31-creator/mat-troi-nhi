@@ -1,46 +1,403 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#66c7ff">
-<title>AI Mặt Trời Nhí – Khám phá năng lượng Mặt Trời</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#66c7ff">
+<title>AI Mặt Trời Nhí - Khám phá năng lượng Mặt Trời</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
-:root{--navy:#184d86;--blue:#168ee8;--yellow:#ffca3a;--green:#2eb985;--ink:#22446b;--muted:#6d89a5}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Nunito,sans-serif;color:var(--ink);background:linear-gradient(180deg,#8bdcff,#f4fcff 58%,#e9f9dc)}button,input{font:inherit}.wrap{width:min(1120px,94%);margin:auto;padding:20px 0 30px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:#ffdf65;font-size:32px;box-shadow:0 5px 0 #e9a52b}.brand h1{font:800 clamp(22px,4vw,34px)/1 'Baloo 2';margin:0;color:#124b8c}.brand p{font-size:10px;letter-spacing:2px;font-weight:900;margin:0 0 5px;color:#247bb9}.grade{background:white;border-radius:99px;padding:10px 15px;font-weight:900;color:#2379b9}.hero{display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:20px;padding:26px 30px;border:3px solid #ffffffbd;border-radius:28px;background:linear-gradient(115deg,#fff9d8,#fff 54%,#c8f2ff);box-shadow:0 9px 0 #8bcfe9;margin-bottom:20px}.hero h2{font:800 clamp(28px,4.5vw,45px)/1.08 'Baloo 2';margin:10px 0;color:var(--navy)}.hero h2 span{color:#ee9c13}.hero p{line-height:1.6;font-weight:700;color:#537594;margin:0}.pill{display:inline-block;background:#e0f8ed;color:#16885f;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:900}.sun-stage{display:grid;place-items:center;min-height:170px}.sun{width:145px;height:145px;border-radius:50%;display:grid;place-items:center;font-size:76px;background:radial-gradient(circle at 30% 25%,#fffca8,#ffe96b 35%,#ffc02f 70%,#ff9e21);box-shadow:inset -8px -10px #f49a24,0 10px 0 #e99b26;animation:bob 3s infinite ease-in-out}@keyframes bob{50%{transform:translateY(-7px)}}.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start;max-width:900px;margin:0 auto}.panel{background:#ffffffdf;border:2px solid white;border-radius:23px;box-shadow:0 7px 0 #a4d9ec;overflow:hidden}.side{padding:18px}.side h3{font:800 22px 'Baloo 2';margin:0;color:#1b568e}.side>p{font-size:12px;color:var(--muted);line-height:1.5;font-weight:700}.scenario{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:2px solid #e1f1fb;background:white;border-radius:15px;padding:11px;margin:9px 0;cursor:pointer;color:var(--ink);box-shadow:0 3px 0 #d9edf8}.scenario.active{border-color:#43b9f2;background:#eaf9ff}.scenario .emoji{font-size:25px}.scenario b{display:block;font-size:13px}.scenario small{display:block;font-size:11px;color:#7891a9;margin-top:3px}.tip{margin-top:15px;padding:13px;border-radius:15px;background:#fff5cc;font-size:12px;line-height:1.55;font-weight:700;color:#7e6937}.progress{margin-top:13px;padding:12px;border-radius:14px;background:#effbf4;font-size:12px;font-weight:900;color:#348a68}.track{height:8px;background:#d5efe3;border-radius:20px;margin-top:8px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#46d4a0,#ffd84d);transition:width .3s}.chat{display:flex;flex-direction:column;min-height:650px}.chathead{display:flex;align-items:center;gap:10px;padding:15px 18px;background:linear-gradient(100deg,#e4f7ff,#fff);border-bottom:1px solid #e3f2fb}.mini{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:#ffe17a;font-size:26px}.chathead strong{display:block;font:800 18px 'Baloo 2';color:#20578c}.chathead small{font-size:11px;color:#7c98ad;font-weight:800}.reset{margin-left:auto;border:1px solid #d9edf8;border-radius:12px;background:white;color:#4b83a9;font-size:22px;padding:5px 10px;cursor:pointer}.messages{padding:18px;flex:1;min-height:400px;max-height:560px;overflow:auto;background:linear-gradient(#fbfeff,#f5fbff)}.rowmsg{display:flex;gap:9px;margin-bottom:15px;align-items:flex-end}.rowmsg.user{justify-content:flex-end}.avatar{flex:0 0 32px;width:32px;height:32px;border-radius:11px;background:#ffe9a4;display:grid;place-items:center}.bubble{max-width:min(82%,600px);padding:12px 14px;border-radius:16px 16px 16px 5px;background:white;border:1px solid #dceefa;box-shadow:0 3px 0 #e5f1f8;line-height:1.55;font-size:14px;font-weight:700;overflow-wrap:anywhere;white-space:pre-wrap}.user .bubble{background:linear-gradient(135deg,#278fe5,#56c3f6);border:0;color:white;border-radius:16px 16px 5px 16px}.quick{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 13px;background:white}.quick button{border:1px solid #d8ecf9;background:#f3fbff;color:#347ba9;border-radius:99px;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.composer{display:flex;gap:8px;padding:13px 15px 9px;border-top:1px solid #e2f0f9;background:white}.composer input{min-width:0;flex:1;border:2px solid #e0eff9;background:#f8fcff;border-radius:14px;padding:12px;font-size:14px;font-weight:700;outline:none}.composer input:focus{border-color:#61c7f5}.composer button{border:0;border-radius:13px;cursor:pointer;font-weight:900}.mic{width:46px;background:#fff0cf;box-shadow:0 3px #f4d88d;font-size:19px}.mic.listening{background:#ffb7b7}.send{padding:0 17px;background:linear-gradient(135deg,#ffbd38,#ff9d28);color:#754600;box-shadow:0 3px #e38a21}.voice{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 16px 12px;background:white;font-size:11px;font-weight:800;color:#7893a9;flex-wrap:wrap}.voice label{display:flex;align-items:center;gap:6px}.voice input{accent-color:#31b8e9}.status{color:#348a68}.footer{text-align:center;padding:18px 5px 0;font-size:11px;font-weight:900;letter-spacing:1px;color:#5086a2}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#174b7a;color:white;border-radius:99px;padding:10px 15px;font-size:12px;font-weight:800;display:none;z-index:5}.toast.show{display:block}@media(max-width:760px){.hero{grid-template-columns:1fr;padding:22px}.sun-stage{min-height:110px}.sun{width:100px;height:100px;font-size:54px}.layout{grid-template-columns:1fr}.chat{min-height:540px}.messages{max-height:440px;padding:13px}.bubble{font-size:13px;max-width:88%}.grade{font-size:10px;padding:8px}.composer{padding:10px}.send{padding:0 12px}}
-</style></head>
-<body><main class="wrap">
-<header class="top"><div class="brand"><div class="logo">☀️</div><div><p>GÓC KHÁM PHÁ KHOA HỌC</p><h1>AI Mặt Trời Nhí</h1></div></div><div class="grade">🚀 LỚP 5 · STEM</div></header>
-<section class="hero"><div><span class="pill">🌱 CÙNG HỌC · CÙNG KHÁM PHÁ</span><h2>Chào nhà khoa học nhí!<br><span>Năng lượng Mặt Trời quanh ta</span></h2><p>Trò chuyện với tớ để khám phá năng lượng Mặt Trời giúp ích cho con người như thế nào và vì sao chúng ta cần bảo vệ môi trường.</p></div><div class="sun-stage"><div class="sun">☀️</div></div></section>
-<section class="layout"><section class="panel chat"><div class="chathead"><div class="mini">☀️</div><div><strong>Mặt Trời Nhí</strong><small>Người bạn khoa học của em</small></div><button class="reset" id="resetBtn" title="Bắt đầu lại" aria-label="Bắt đầu lại">↻</button></div>
-<div id="chatMessages" class="messages" aria-live="polite"></div><form id="chatForm" class="composer"><button type="button" id="micBtn" class="mic" title="Nói câu trả lời" aria-label="Nói câu trả lời">🎙️</button><input id="userInput" maxlength="1000" autocomplete="off" placeholder="Gõ hoặc bấm micro để nói với tớ..." aria-label="Câu trả lời của em"><button class="send" type="submit">Gửi ➤</button></form>
-<div class="voice"><label><input type="checkbox" id="speakToggle" checked> 🔊 Đọc câu trả lời</label><span class="status" id="voiceStatus">🎧 Sẵn sàng trò chuyện</span></div></section></section>
-<div class="footer">HỌC ĐIỀU MỚI MỖI NGÀY ✦ KHÁM PHÁ NĂNG LƯỢNG ✦ BẢO VỆ TRÁI ĐẤT 🌎</div></main><div id="toast" class="toast"></div>
-<script>
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const messages=$('#chatMessages'),input=$('#userInput'),status=$('#voiceStatus'),toast=$('#toast');
-let currentScenario='Trường học xanh',turns=0,recognition=null,history=[],challengeIndex=0;
-const openings = ['Xin chào em! Tớ là Mặt Trời Nhí. Theo em, pin mặt trời có thể giúp những thiết bị nào hoạt động?','Chào nhà khoa học nhí! Ánh sáng Mặt Trời có vai trò gì đối với cây xanh?','Xin chào em! Nếu trường mình sử dụng điện mặt trời, theo em trường có thể dùng nguồn điện ấy cho những việc gì?','Chào em! Theo em, chúng ta có thể làm gì để tiết kiệm điện và bảo vệ môi trường?','Tớ rất vui được gặp em! Vì sao năng lượng Mặt Trời được xem là một nguồn năng lượng sạch?'];let opening=openings[Math.floor(Math.random() * openings.length)];
-function notify(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500)}
-function addMessage(text,who='bot',speakIt=true){const row=document.createElement('div');row.className='rowmsg'+(who==='user'?' user':'');const bubble=document.createElement('div');bubble.className='bubble';bubble.textContent=text;row.appendChild(bubble);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;if(who==='bot'&&speakIt&&$('#speakToggle').checked)speak(text);return row}
-function speak(text){if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='vi-VN';u.rate=.92;u.pitch=1.05;const v=window.speechSynthesis.getVoices().find(x=>x.lang.toLowerCase().startsWith('vi'));if(v)u.voice=v;window.speechSynthesis.speak(u)}
-function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')}
-function localReply(text){
- const t=norm(text),has=(...words)=>words.some(w=>t.includes(w));
- const prev=norm(history.filter(m=>m.role==='user').slice(-2,-1)[0]?.content||'');
- if(has('xin chao','chao em','hello','hi')) return 'Chào em! Tớ rất vui được trò chuyện cùng em. Theo em, năng lượng Mặt Trời có thể được sử dụng vào những việc gì trong cuộc sống?';
- if(has('thang may','may tinh','ti vi','tivi','dien thoai','quat','den','thiet bi')) return 'Em đã nêu một thiết bị cụ thể rồi. Một số thiết bị như đèn, quạt hoặc máy tính có thể hoạt động nhờ điện được tạo ra từ pin mặt trời, nếu hệ thống được thiết kế phù hợp. Vậy theo em, pin mặt trời đã giúp biến ánh sáng Mặt Trời thành dạng năng lượng nào để thiết bị hoạt động?';
- if(has('dien','dien nang','pin mat troi','chuyen doi','tao ra dien')) return 'Đúng rồi, pin mặt trời có thể chuyển đổi ánh sáng Mặt Trời thành điện năng. Nguồn điện ấy có thể dùng cho đèn, quạt và một số thiết bị phù hợp. Ngoài việc tạo ra điện, ánh sáng Mặt Trời còn có vai trò gì đối với cây xanh và các sinh vật?';
- if(has('cay','quang hop','dong vat','con nguoi','sinh vat','su song','phat trien')) return 'Ánh sáng Mặt Trời giúp cây xanh quang hợp, tạo chất dinh dưỡng và góp phần duy trì sự sống. Con người và nhiều loài động vật phụ thuộc trực tiếp hoặc gián tiếp vào cây xanh. Theo em, chúng ta có thể làm gì để bảo vệ môi trường sống?';
- if(has('khong co mat troi','mat troi bien mat','khong co nang luong mat troi','mat troi tat')) return 'Mặt Trời cung cấp ánh sáng và năng lượng cần thiết cho Trái Đất. Cây xanh cần ánh sáng để quang hợp, còn con người và nhiều loài sinh vật phụ thuộc trực tiếp hoặc gián tiếp vào cây xanh. Nếu không còn năng lượng Mặt Trời, sự sống như chúng ta biết sẽ không thể duy trì lâu dài. Theo em, chúng ta có thể làm gì để bảo vệ môi trường sống?';
- if(has( 'bao ve moi truong','bao ve trai dat','giu gin ve sinh', 've sinh moi truong','nhat rac','bo rac','khong xa rac', 'trong cay','tiet kiem dien','phan loai rac', 'don dep','rac thai','moi truong sach','cham soc cay' )) { return 'Em đã nêu một việc rất có ích! Chúng ta có thể bảo vệ môi trường bằng cách bỏ rác đúng nơi, giữ lớp học sạch sẽ, trồng cây và tiết kiệm điện. Những việc nhỏ này giúp bảo vệ sự sống trên Trái Đất. Em sẽ chọn việc nào để thực hiện ngay hôm nay?'; }
- if(has('khong biet','chua biet','khong nghi ra')) return 'Không sao, mình cùng suy nghĩ nhé. Pin mặt trời có thể chuyển ánh sáng thành điện để một số thiết bị hoạt động; cây xanh cũng cần ánh sáng để phát triển. Em thử kể tên một thiết bị dùng điện mà em thường thấy ở trường.';
- if(has('cam on','hay qua','tot')) return 'Rất vui vì em đang tích cực suy nghĩ. Đến đây, em đã biết năng lượng Mặt Trời có thể giúp tạo điện và góp phần duy trì sự sống. Em hãy nêu một hành động cụ thể để bảo vệ môi trường sống của chúng ta nhé.';
- if(has('phoi do','lam nong nuoc','lam muoi','giam luong nuoc','phoi thoc')) return 'Em đang nghĩ đến tác động của ánh nắng. Trong bài khám phá này, mình tập trung vào những ứng dụng khác của năng lượng Mặt Trời nhé. Pin mặt trời có thể chuyển ánh sáng thành điện năng. Em thử nghĩ xem điện ấy có thể giúp thiết bị nào hoạt động.';
- if(has('vi sao','tai sao','giai thich')) {return 'Mình sẽ giải thích nhé. Năng lượng Mặt Trời có thể được pin mặt trời chuyển thành điện năng để cung cấp cho đèn, quạt và một số thiết bị phù hợp. Em muốn tìm hiểu thêm về cách tạo ra điện hay lợi ích của điện mặt trời?';} if(has('nang luong mat troi giup ich gi','giup ich gi cho con nguoi','cuoc song hang ngay','loi ich cua nang luong mat troi')) {return 'Năng lượng Mặt Trời giúp tạo ra điện nhờ pin mặt trời, cung cấp năng lượng cho đèn, quạt và một số thiết bị phù hợp. Ánh sáng Mặt Trời còn giúp cây xanh quang hợp và phát triển. Theo em, sử dụng điện mặt trời có thể giúp ích gì cho môi trường?';}
-return 'Mình muốn hiểu rõ câu hỏi của em để giải thích chính xác hơn. Em có thể nói cụ thể điều em đang muốn tìm hiểu không?';
+:root {
+  --blue:#168ee8;
+  --navy:#184d86;
+  --yellow:#ffca3a;
+  --green:#2eb985;
+  --ink:#22446b;
 }
-async function getReply(text) {return{answer:localReply(text),mode:'local'};}  
-async function send(text){text=text.trim();if(!text)return;addMessage(text,'user',false);input.value='';turns++;const progressText = $('#progressText'); const progressFill = $('#progressFill'); if (progressText) {progressText.textContent = Math.min(turns, 5) + '/5';} if (progressFill) {progressFill.style.width = Math.min(turns, 5) * 20 + '%'};history.push({role:'user',content:text});const loading=addMessage('Tớ đang suy nghĩ cùng em nhé…','bot',false);if('speechSynthesis'in window)window.speechSynthesis.cancel();const result=await getReply(text);loading.querySelector('.bubble').textContent=result.answer;history.push({role:'assistant',content:result.answer});status.textContent=result.mode==='ai'?'Đã nhận phản hồi từ AI':'Đang trò chuyện học tập';if($('#speakToggle').checked)speak(result.answer);messages.scrollTop=messages.scrollHeight}
-$('#chatForm').addEventListener('submit',e=>{e.preventDefault();send(input.value)});$('#resetBtn').addEventListener('click',()=>{messages.innerHTML='';turns=0;history=[];challengeIndex=0;$('#progressText').textContent='0/5';$('#progressFill').style.width='0%';if('speechSynthesis'in window)window.speechSynthesis.cancel();addMessage(opening);status.textContent='Sẵn sàng trò chuyện'});
-$('#micBtn').addEventListener('click',()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){notify('Trình duyệt chưa hỗ trợ nhận giọng nói. Em có thể gõ câu trả lời nhé!');return}if(recognition){recognition.stop();return}recognition=new SR();recognition.lang='vi-VN';recognition.interimResults=false;recognition.maxAlternatives=1;$('#micBtn').classList.add('listening');status.textContent='🔴 Tớ đang lắng nghe…';recognition.onresult=e=>{input.value=e.results[0][0].transcript;input.focus();status.textContent='✅ Tớ đã nghe câu trả lời'};recognition.onerror=()=>{status.textContent='⚠️ Chưa nhận được giọng nói';notify('Hãy kiểm tra quyền sử dụng micro của trình duyệt nhé!')};recognition.onend=()=>{$('#micBtn').classList.remove('listening');recognition=null;if(status.textContent.includes('lắng nghe'))status.textContent='Sẵn sàng trò chuyện'};recognition.start()});
-addMessage(opening);
-</script></body></html>
+* { box-sizing:border-box; }
+body {
+  margin:0; min-height:100vh;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#8bdcff,#f4fcff 58%,#e9f9dc);
+}
+button,input { font:inherit; }
+button { cursor:pointer; }
+.wrap { width:min(900px,94%); margin:auto; padding:20px 0 30px; }
+header { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.logo {
+  display:grid; place-items:center; width:55px; height:55px;
+  border-radius:18px; background:#ffdf65; font-size:32px;
+}
+h1 { margin:0; color:#124b8c; font-size:clamp(22px,5vw,32px); }
+header p { margin:0 0 4px; font-size:11px; font-weight:bold; letter-spacing:1px; }
+.hero {
+  padding:23px; border:3px solid white; border-radius:25px;
+  background:linear-gradient(115deg,#fff9d8,#fff 60%,#c8f2ff);
+  box-shadow:0 7px 0 #8bcfe9; margin-bottom:20px;
+}
+.hero h2 { color:var(--navy); margin:8px 0; font-size:clamp(25px,5vw,38px); }
+.hero p { line-height:1.6; margin-bottom:0; }
+.tag { color:#16885f; font-weight:bold; font-size:12px; }
+.panel {
+  background:#ffffffed; border:2px solid white; border-radius:22px;
+  box-shadow:0 7px 0 #a4d9ec; overflow:hidden;
+}
+.chathead {
+  display:flex; align-items:center; gap:10px; padding:14px;
+  background:#e4f7ff; border-bottom:1px solid #e3f2fb;
+}
+.mini {
+  display:grid; place-items:center; width:42px; height:42px;
+  border-radius:14px; background:#ffe17a; font-size:25px;
+}
+.chathead strong { display:block; color:#20578c; font-size:17px; }
+.chathead small { color:#7891a9; }
+.reset {
+  margin-left:auto; border:1px solid #d9edf8; border-radius:12px;
+  background:white; padding:8px 12px; color:#347ba9;
+}
+.progress { padding:12px 16px 0; font-size:12px; font-weight:bold; color:#348a68; }
+.track { height:7px; margin-top:7px; background:#d5efe3; border-radius:20px; overflow:hidden; }
+.fill { height:100%; width:0; background:#2eb985; transition:width .3s; }
+.messages {
+  padding:17px; min-height:320px; max-height:470px; overflow-y:auto;
+  background:linear-gradient(#fbfeff,#f5fbff);
+}
+.rowmsg { display:flex; margin-bottom:14px; }
+.rowmsg.user { justify-content:flex-end; }
+.bubble {
+  max-width:88%; padding:12px 14px; border-radius:16px 16px 16px 5px;
+  background:white; border:1px solid #dceefa; line-height:1.6;
+  font-size:14px; overflow-wrap:anywhere; white-space:pre-wrap;
+}
+.user .bubble {
+  background:linear-gradient(135deg,#278fe5,#56c3f6);
+  border:0; color:white; border-radius:16px 16px 5px 16px;
+}
+.quick { display:flex; flex-wrap:wrap; gap:8px; padding:0 15px 12px; background:white; }
+.quick button {
+  border:1px solid #d8ecf9; background:#f3fbff; color:#347ba9;
+  border-radius:20px; padding:8px 11px; font-size:12px;
+}
+.composer {
+  display:flex; gap:8px; padding:12px;
+  border-top:1px solid #e2f0f9; background:white;
+}
+.composer input {
+  flex:1; min-width:0; border:2px solid #e0eff9; border-radius:13px;
+  padding:12px; background:#f8fcff; outline:none;
+}
+.composer input:focus { border-color:#61c7f5; }
+.composer button { border:0; border-radius:12px; font-weight:bold; }
+.mic { width:45px; background:#fff0cf; }
+.send { padding:0 17px; background:#ffbd38; color:#754600; }
+.voice {
+  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  padding:0 14px 13px; background:white; font-size:12px; color:#7893a9;
+}
+.voice label { display:flex; gap:6px; align-items:center; }
+.status { color:#348a68; }
+.footer { text-align:center; padding:18px 5px 0; font-size:11px; font-weight:bold; color:#5086a2; }
+@media(max-width:500px) {
+  .hero { padding:17px; }
+  .messages { min-height:300px; padding:12px; }
+  .bubble { font-size:13px; }
+  .composer { padding:9px; }
+  .send { padding:0 12px; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="logo">☀️</div>
+    <div>
+      <p>GÓC KHÁM PHÁ KHOA HỌC</p>
+      <h1>AI Mặt Trời Nhí</h1>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="tag">CÙNG HỌC · CÙNG KHÁM PHÁ</span>
+    <h2>Năng lượng Mặt Trời quanh ta</h2>
+    <p>Khám phá cách Mặt Trời giúp tạo ra điện, nuôi dưỡng cây xanh và vì sao chúng ta cần bảo vệ môi trường.</p>
+  </section>
+
+  <section class="panel">
+    <div class="chathead">
+      <div class="mini">☀️</div>
+      <div>
+        <strong>Mặt Trời Nhí</strong>
+        <small>Người bạn khoa học của em</small>
+      </div>
+      <button class="reset" id="resetBtn" title="Bắt đầu cuộc trò chuyện mới">↻ Làm lại</button>
+    </div>
+
+    <div class="progress">
+      <span id="progressText">Bước 1/4 · Khám phá năng lượng</span>
+      <div class="track"><div class="fill" id="progressFill"></div></div>
+    </div>
+
+    <div id="chatMessages" class="messages" aria-live="polite"></div>
+    <div class="quick" id="quick"></div>
+
+    <form id="chatForm" class="composer">
+      <button type="button" id="micBtn" class="mic" title="Nói câu trả lời">🎙️</button>
+      <input id="userInput" maxlength="1000" autocomplete="off"
+        placeholder="Gõ câu trả lời của em..." aria-label="Câu trả lời">
+      <button class="send" type="submit">Gửi ➤</button>
+    </form>
+
+    <div class="voice">
+      <label><input type="checkbox" id="speakToggle"> Đọc câu trả lời</label>
+      <span class="status" id="voiceStatus">Sẵn sàng trò chuyện</span>
+    </div>
+  </section>
+
+  <div class="footer">KHÁM PHÁ NĂNG LƯỢNG · BẢO VỆ SỰ SỐNG TRÊN TRÁI ĐẤT</div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const messages = $('#chatMessages');
+const input = $('#userInput');
+const status = $('#voiceStatus');
+const progressText = $('#progressText');
+const progressFill = $('#progressFill');
+const quick = $('#quick');
+
+const openings = [
+  'Theo em, ánh sáng Mặt Trời có thể giúp con người tạo ra điện bằng cách nào?',
+  'Nếu trường mình có pin mặt trời trên mái nhà, em nghĩ nguồn điện ấy có thể dùng cho những thiết bị nào?',
+  'Em có biết ánh sáng Mặt Trời có thể được biến đổi thành điện năng không? Theo em, điện ấy giúp ích gì cho cuộc sống?',
+  'Ngoài chiếu sáng ban ngày, năng lượng Mặt Trời còn có thể giúp ích cho con người như thế nào?',
+  'Theo em, vì sao người ta lắp các tấm pin mặt trời trên mái nhà hoặc ở những nơi có nhiều nắng?'
+];
+
+const questionSets = [
+  [
+    'Pin mặt trời có thể giúp thiết bị nào hoạt động?',
+    'Theo em, ánh sáng Mặt Trời có thể biến thành dạng năng lượng nào?',
+    'Điện từ pin mặt trời có thể được dùng ở trường học như thế nào?'
+  ],
+  [
+    'Ánh sáng Mặt Trời giúp cây xanh thực hiện quá trình gì?',
+    'Theo em, cây xanh cần ánh sáng để làm gì?',
+    'Nếu thiếu ánh sáng trong thời gian dài, cây xanh có thể bị ảnh hưởng ra sao?'
+  ],
+  [
+    'Cây xanh có ích như thế nào đối với con người và động vật?',
+    'Vì sao cây xanh và các sinh vật cần một môi trường sống tốt?',
+    'Theo em, điều gì có thể xảy ra nếu môi trường sống bị ô nhiễm?'
+  ],
+  [
+    'Em có thể làm gì để giữ lớp học và nơi ở sạch đẹp?',
+    'Theo em, tiết kiệm điện và trồng cây giúp ích gì cho môi trường?',
+    'Nếu thấy rác trên sân trường, em sẽ làm gì để giữ môi trường sạch?'
+  ]
+];
+
+let stage = 0;
+let finished = false;
+let recognition = null;
+let usedOpening = -1;
+
+function pickDifferentOpening() {
+  let n = Math.floor(Math.random() * openings.length);
+  if (openings.length > 1 && n === usedOpening) {
+    n = (n + 1 + Math.floor(Math.random() * (openings.length - 1))) % openings.length;
+  }
+  usedOpening = n;
+  return openings[n];
+}
+
+function pickQuestion(index) {
+  const choices = questionSets[index];
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function addMessage(text, who = 'bot') {
+  const row = document.createElement('div');
+  row.className = 'rowmsg' + (who === 'user' ? ' user' : '');
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = text;
+  row.appendChild(bubble);
+  messages.appendChild(row);
+  messages.scrollTop = messages.scrollHeight;
+  if (who === 'bot' && $('#speakToggle').checked) speak(text);
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'vi-VN';
+  utterance.rate = 0.92;
+  const voice = speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith('vi'));
+  if (voice) utterance.voice = voice;
+  speechSynthesis.speak(utterance);
+}
+
+function normalized(text) {
+  return text.toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd');
+}
+
+function hasAny(text, words) {
+  return words.some(word => text.includes(word));
+}
+
+function updateProgress() {
+  const labels = [
+    'Bước 1/4 · Khám phá năng lượng',
+    'Bước 2/4 · Cây xanh và ánh sáng',
+    'Bước 3/4 · Sự sống trên Trái Đất',
+    'Bước 4/4 · Bảo vệ môi trường',
+    'Đã hoàn thành bài khám phá'
+  ];
+  progressText.textContent = labels[Math.min(stage, 4)];
+  progressFill.style.width = (Math.min(stage, 4) / 4 * 100) + '%';
+}
+
+function setQuickQuestions(items) {
+  quick.innerHTML = '';
+  items.forEach(question => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = question;
+    button.addEventListener('click', () => send(question));
+    quick.appendChild(button);
+  });
+}
+
+function startConversation() {
+  stage = 0;
+  finished = false;
+  messages.innerHTML = '';
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  addMessage('Xin chào em! Tớ là Mặt Trời Nhí. ' + pickDifferentOpening());
+  updateProgress();
+  status.textContent = 'Sẵn sàng trò chuyện';
+  setQuickQuestions([
+    'Pin mặt trời tạo điện như thế nào?',
+    'Em chưa biết',
+    'Cho em một gợi ý'
+  ]);
+  input.disabled = false;
+  input.placeholder = 'Gõ câu trả lời của em...';
+}
+
+function answerForStage(text) {
+  const t = normalized(text);
+  let reply = '';
+
+  if (stage === 0) {
+    if (hasAny(t, ['khong biet','chua biet','khong ro'])) {
+      reply = 'Không sao, tớ gợi ý nhé. Pin mặt trời có thể chuyển ánh sáng Mặt Trời thành điện năng. Điện ấy có thể giúp đèn, quạt và một số thiết bị phù hợp hoạt động.';
+    } else {
+      reply = 'Cảm ơn em đã chia sẻ! Pin mặt trời có thể chuyển ánh sáng Mặt Trời thành điện năng để cung cấp cho đèn, quạt và một số thiết bị phù hợp.';
+    }
+    stage = 1;
+    return reply + ' ' + pickQuestion(1);
+  }
+
+  if (stage === 1) {
+    reply = hasAny(t, ['quang hop','tao chat dinh duong'])
+      ? 'Chính xác! Cây xanh sử dụng ánh sáng để quang hợp, tạo ra chất dinh dưỡng cần thiết cho sự phát triển.'
+      : 'Tớ gợi ý nhé: nhờ ánh sáng Mặt Trời, cây xanh có thể quang hợp và tạo ra chất dinh dưỡng để phát triển.';
+    stage = 2;
+    return reply + ' ' + pickQuestion(2);
+  }
+
+  if (stage === 2) {
+    reply = hasAny(t, ['cay','oxy','oxi','thuc an','khong khi','su song','dong vat','con nguoi'])
+      ? 'Đúng hướng rồi! Cây xanh cung cấp thức ăn cho nhiều sinh vật, hấp thụ khí carbon dioxide và góp phần tạo ra oxygen. Con người, động vật và cây xanh đều cần môi trường sống lành mạnh.'
+      : 'Cây xanh và nhiều sinh vật có mối liên hệ với nhau. Môi trường sạch giúp con người, động vật và thực vật có điều kiện sống tốt hơn.';
+    stage = 3;
+    return reply + ' ' + pickQuestion(3);
+  }
+
+  if (stage === 3) {
+    reply = hasAny(t, ['khong biet','chua biet','khong ro'])
+      ? 'Tớ gợi ý nhé: em có thể bỏ rác đúng nơi, giữ lớp học sạch sẽ, trồng cây và tiết kiệm điện.'
+      : 'Cảm ơn em! Bỏ rác đúng nơi, giữ vệ sinh, trồng cây và tiết kiệm điện đều là những hành động thiết thực.';
+    stage = 4;
+    finished = true;
+    updateProgress();
+    setQuickQuestions(['Bắt đầu cuộc trò chuyện mới']);
+    input.disabled = true;
+    input.placeholder = 'Bấm “Làm lại” để bắt đầu lượt mới';
+    return reply + ' Những việc nhỏ ấy góp phần bảo vệ môi trường và sự sống trên Trái Đất. Hôm nay em đã khám phá được nhiều điều bổ ích. Tớ mong em sẽ thực hiện ít nhất một việc tốt cho môi trường mỗi ngày. Tạm biệt em, hẹn gặp lại trong chuyến khám phá khoa học tiếp theo!';
+  }
+
+  return 'Bài khám phá hôm nay đã kết thúc rồi. Em hãy bấm “Làm lại” nếu muốn bắt đầu một lượt mới nhé.';
+}
+
+async function send(text) {
+  text = text.trim();
+  if (!text) return;
+
+  if (text === 'Bắt đầu cuộc trò chuyện mới') {
+    startConversation();
+    return;
+  }
+
+  if (finished) {
+    addMessage('Bài khám phá đã kết thúc. Bấm “Làm lại” để trò chuyện một lượt mới nhé.');
+    return;
+  }
+
+  addMessage(text, 'user');
+  input.value = '';
+  setQuickQuestions([]);
+  addMessage(answerForStage(text));
+  updateProgress();
+  status.textContent = finished ? 'Đã hoàn thành bài khám phá' : 'Đang trò chuyện học tập';
+  messages.scrollTop = messages.scrollHeight;
+}
+
+$('#chatForm').addEventListener('submit', event => {
+  event.preventDefault();
+  send(input.value);
+});
+
+$('#resetBtn').addEventListener('click', startConversation);
+
+$('#micBtn').addEventListener('click', () => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    status.textContent = 'Trình duyệt chưa hỗ trợ nhận giọng nói';
+    return;
+  }
+  if (recognition) {
+    recognition.stop();
+    return;
+  }
+  recognition = new SpeechRecognition();
+  recognition.lang = 'vi-VN';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  status.textContent = 'Đang lắng nghe...';
+  recognition.onresult = event => {
+    input.value = event.results[0][0].transcript;
+    send(input.value);
+  };
+  recognition.onerror = () => {
+    status.textContent = 'Chưa nhận được giọng nói. Em hãy thử lại.';
+  };
+  recognition.onend = () => {
+    recognition = null;
+    if (status.textContent === 'Đang lắng nghe...') {
+      status.textContent = 'Sẵn sàng trò chuyện';
+    }
+  };
+  recognition.start();
+});
+
+startConversation();
+</script>
+</body>
+</html>
