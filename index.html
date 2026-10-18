@@ -320,20 +320,43 @@ function answerForStage(text) {
     return reply + ' ' + pickQuestion(3);
   }
 
-  if (stage === 3) {
-    reply = hasAny(t, ['khong biet','chua biet','khong ro'])
-      ? 'Tớ gợi ý nhé: em có thể bỏ rác đúng nơi, giữ lớp học sạch sẽ, trồng cây và tiết kiệm điện.'
-      : 'Cảm ơn em! Bỏ rác đúng nơi, giữ vệ sinh, trồng cây và tiết kiệm điện đều là những hành động thiết thực.';
+  
+if (stage === 3) {
+  const goodAction = hasAny(t, [
+    'giu lop hoc sach se',
+    'lop hoc sach',
+    'giu ve sinh',
+    've sinh moi truong',
+    'bao ve moi truong',
+    'nhat rac',
+    'bo rac dung noi',
+    'khong xa rac',
+    'don dep',
+    'trong cay',
+    'cham soc cay',
+    'tiet kiem dien',
+    'phan loai rac',
+    'khong xa thai',
+    'quet lop',
+    'don lop',
+    'giu truong sach',
+    'giu sach se',
+    'thu gom rac',
+    'tai su dung'
+  ]);
+
+  if (goodAction) {
     stage = 4;
     finished = true;
     updateProgress();
     setQuickQuestions(['Bắt đầu cuộc trò chuyện mới']);
     input.disabled = true;
     input.placeholder = 'Bấm “Làm lại” để bắt đầu lượt mới';
-    return reply + ' Những việc nhỏ ấy góp phần bảo vệ môi trường và sự sống trên Trái Đất. Hôm nay em đã khám phá được nhiều điều bổ ích. Tớ mong em sẽ thực hiện ít nhất một việc tốt cho môi trường mỗi ngày. Tạm biệt em, hẹn gặp lại trong chuyến khám phá khoa học tiếp theo!';
+
+    return 'Rất tốt! Em hãy cố gắng giữ lớp học sạch sẽ, bỏ rác đúng nơi và chăm sóc cây xanh để góp phần bảo vệ môi trường nhé. Những hành động nhỏ của em giúp môi trường sống ngày càng xanh, sạch, đẹp hơn. Cảm ơn em đã cùng tớ khám phá năng lượng Mặt Trời và sự sống trên Trái Đất. Tạm biệt em, hẹn gặp lại!';
   }
 
-  return 'Bài khám phá hôm nay đã kết thúc rồi. Em hãy bấm “Làm lại” nếu muốn bắt đầu một lượt mới nhé.';
+  return 'Em thử nghĩ đến những việc gần gũi nhé: giữ lớp học sạch sẽ, bỏ rác đúng nơi, chăm sóc cây xanh hoặc tiết kiệm điện. Trong những việc ấy, em có thể thực hiện việc nào ngay hôm nay?';
 }
 
 async function send(text) {
