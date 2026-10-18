@@ -7,6 +7,7 @@
 <title>AI Mặt Trời Nhí – Khám phá năng lượng Mặt Trời</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+
 :root{--navy:#184d86;--blue:#168ee8;--yellow:#ffca3a;--green:#2eb985;--ink:#22446b;--muted:#6d89a5}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;font-family:Nunito,sans-serif;color:var(--ink);background:linear-gradient(180deg,#8bdcff,#f4fcff 58%,#e9f9dc)}
@@ -48,7 +49,7 @@ button,input{font:inherit}
 .composer input{min-width:0;flex:1;border:2px solid #e0eff9;background:#f8fcff;border-radius:14px;padding:12px;font-size:14px;font-weight:700;outline:none}
 .composer input:focus{border-color:#61c7f5}
 .composer button{border:0;border-radius:13px;cursor:pointer;font-weight:900}
-.mic{width:46px;background:#fff0cf;box-shadow:0 3px #f4d88d;font-size:15px}
+.mic{width:62px;background:#fff0cf;box-shadow:0 3px #f4d88d;font-size:13px}
 .mic.listening{background:#ffb7b7}
 .send{padding:0 17px;background:linear-gradient(135deg,#ffbd38,#ff9d28);color:#754600;box-shadow:0 3px #e38a21}
 .voice{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 16px 12px;background:white;font-size:11px;font-weight:800;color:#7893a9;flex-wrap:wrap}
@@ -58,7 +59,17 @@ button,input{font:inherit}
 .footer{text-align:center;padding:18px 5px 0;font-size:11px;font-weight:900;letter-spacing:1px;color:#5086a2}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#174b7a;color:white;border-radius:99px;padding:10px 15px;font-size:12px;font-weight:800;display:none;z-index:5;max-width:90%;text-align:center}
 .toast.show{display:block}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding:22px}.sun-stage{min-height:110px}.sun{width:100px;height:100px;font-size:54px}.chat{min-height:540px}.messages{max-height:440px;padding:13px}.bubble{font-size:13px;max-width:88%}.grade{font-size:10px;padding:8px}.composer{padding:10px}.send{padding:0 12px}}
+@media(max-width:760px){
+.hero{grid-template-columns:1fr;padding:22px}
+.sun-stage{min-height:110px}
+.sun{width:100px;height:100px;font-size:54px}
+.chat{min-height:540px}
+.messages{max-height:440px;padding:13px}
+.bubble{font-size:13px;max-width:88%}
+.grade{font-size:10px;padding:8px}
+.composer{padding:10px}
+.send{padding:0 12px}
+}
 </style>
 </head>
 <body>
@@ -66,7 +77,10 @@ button,input{font:inherit}
 <header class="top">
   <div class="brand">
     <div class="logo">☀️</div>
-    <div><p>GÓC KHÁM PHÁ KHOA HỌC</p><h1>AI Mặt Trời Nhí</h1></div>
+    <div>
+      <p>GÓC KHÁM PHÁ KHOA HỌC</p>
+      <h1>AI Mặt Trời Nhí</h1>
+    </div>
   </div>
   <div class="grade">LỚP 5 · STEM</div>
 </header>
@@ -85,25 +99,30 @@ button,input{font:inherit}
   <div class="chathead">
     <div class="mini">☀️</div>
     <div><strong>Mặt Trời Nhí</strong><small>Người bạn khoa học của em</small></div>
-    <button class="reset" id="resetBtn" type="button" title="Bắt đầu lại">Bắt đầu lại</button>
+    <button class="reset" id="resetBtn" type="button">Bắt đầu lại</button>
   </div>
+
   <div class="progress">
     <span id="progressText">0/5</span>
     <div class="track"><div class="fill" id="progressFill"></div></div>
   </div>
+
   <div id="chatMessages" class="messages" aria-live="polite"></div>
   <div class="quick" id="quick"></div>
+
   <form id="chatForm" class="composer">
-    <button type="button" id="micBtn" class="mic" title="Nói câu trả lời" aria-label="Nói câu trả lời">Micro</button>
+    <button type="button" id="micBtn" class="mic">Micro</button>
     <input id="userInput" maxlength="1000" autocomplete="off" placeholder="Gõ hoặc bấm micro để nói với tớ..." aria-label="Câu trả lời của em">
     <button class="send" type="submit">Gửi</button>
   </form>
+
   <div class="voice">
     <label><input type="checkbox" id="speakToggle" checked> Đọc câu trả lời</label>
     <span class="status" id="voiceStatus">Sẵn sàng trò chuyện</span>
   </div>
 </section>
 </section>
+
 <div class="footer">HỌC ĐIỀU MỚI MỖI NGÀY · KHÁM PHÁ NĂNG LƯỢNG · BẢO VỆ TRÁI ĐẤT</div>
 </main>
 <div id="toast" class="toast"></div>
@@ -120,11 +139,9 @@ let turns = 0;
 let recognition = null;
 let history = [];
 let finished = false;
+let chatStage = 0;
 let lastOpening = -1;
-let lastQuestion = -1;
 let lastPlantQuestion = -1;
-let lastLifeQuestion = -1;
-let lastEnvironmentQuestion = -1;
 let speechUnlocked = false;
 
 const openings = [
@@ -139,28 +156,32 @@ const plantQuestions = [
  'Ngoài giúp tạo ra điện, ánh sáng Mặt Trời còn giúp cây xanh thực hiện quá trình quan trọng nào?',
  'Theo em, vì sao cây xanh cần ánh sáng Mặt Trời để phát triển?',
  'Ánh sáng Mặt Trời giúp cây xanh tạo chất dinh dưỡng bằng quá trình nào?',
- 'Nếu cây xanh thiếu ánh sáng trong thời gian dài, cây có thể gặp khó khăn gì?'
-];
-
-const lifeQuestions = [
- 'Cây xanh có ích như thế nào đối với con người và các loài động vật?',
- 'Vì sao chúng ta cần giữ môi trường sống sạch sẽ và trong lành?',
- 'Theo em, cây xanh giúp ích gì cho sự sống trên Trái Đất?',
- 'Điều gì có thể xảy ra với con người và động vật khi môi trường bị ô nhiễm?'
-];
-
-const environmentQuestions = [
- 'Em có thể làm việc gì ngay hôm nay để giữ lớp học và nơi ở sạch đẹp?',
- 'Theo em, học sinh có thể làm gì để góp phần bảo vệ môi trường?',
- 'Nếu muốn trường học xanh, sạch, đẹp hơn, em sẽ bắt đầu từ việc gì?',
- 'Em sẽ chọn hành động nào để bảo vệ môi trường sống quanh mình?'
+ 'Cây xanh cần ánh sáng Mặt Trời như thế nào để sống và phát triển?'
 ];
 
 function chooseDifferent(list, previous) {
  if (list.length < 2) return 0;
  let n = Math.floor(Math.random() * list.length);
- if (n === previous) n = (n + 1 + Math.floor(Math.random() * (list.length - 1))) % list.length;
+ while (n === previous) n = Math.floor(Math.random() * list.length);
  return n;
+}
+
+function norm(s) {
+ return String(s || '').toLowerCase().normalize('NFD')
+  .replace(/[\u0300-\u036f]/g,'')
+  .replace(/đ/g,'d')
+  .replace(/[.,!?;:()[\]"]/g,' ')
+  .replace(/\s+/g,' ').trim();
+}
+
+function has(t, words) {
+ return words.some(w => t.includes(w));
+}
+
+function notify(text) {
+ toast.textContent = text;
+ toast.classList.add('show');
+ setTimeout(() => toast.classList.remove('show'), 2800);
 }
 
 function speak(text) {
@@ -170,18 +191,17 @@ function speak(text) {
  utterance.lang = 'vi-VN';
  utterance.rate = 0.92;
  utterance.pitch = 1.03;
- const voices = speechSynthesis.getVoices();
- const voice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('vi'));
+ const voice = speechSynthesis.getVoices().find(v => v.lang && v.lang.toLowerCase().startsWith('vi'));
  if (voice) utterance.voice = voice;
  utterance.onstart = () => {
-   speechUnlocked = true;
-   status.textContent = 'Đang đọc nội dung';
+  speechUnlocked = true;
+  status.textContent = 'Đang đọc nội dung';
  };
  utterance.onend = () => {
-   status.textContent = finished ? 'Đã hoàn thành bài học' : 'Sẵn sàng trò chuyện';
+  status.textContent = finished ? 'Đã hoàn thành bài học' : 'Sẵn sàng trò chuyện';
  };
  utterance.onerror = () => {
-   status.textContent = 'Nếu chưa nghe tiếng, hãy chạm vào trang rồi thử lại';
+  status.textContent = 'Nếu chưa nghe tiếng, hãy chạm vào trang rồi thử lại';
  };
  speechSynthesis.speak(utterance);
 }
@@ -199,16 +219,6 @@ function addMessage(text, who='bot', shouldSpeak=true) {
  return row;
 }
 
-function norm(s) {
- return String(s || '').toLowerCase().normalize('NFD')
- .replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')
- .replace(/[.,!?;:()[\]"]/g,' ').replace(/\s+/g,' ').trim();
-}
-
-function has(t, words) {
- return words.some(w => t.includes(w));
-}
-
 function updateProgress() {
  $('#progressText').textContent = Math.min(turns, 5) + '/5';
  $('#progressFill').style.width = Math.min(turns, 5) * 20 + '%';
@@ -220,7 +230,10 @@ function setQuick(items) {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = item;
-  button.addEventListener('click', () => send(item));
+  button.addEventListener('click', () => {
+   if (item === 'Bắt đầu cuộc trò chuyện mới') startConversation();
+   else send(item);
+  });
   quick.appendChild(button);
  });
 }
@@ -228,19 +241,19 @@ function setQuick(items) {
 function startConversation() {
  if ('speechSynthesis' in window) speechSynthesis.cancel();
  if (recognition) {
-   try { recognition.stop(); } catch(e) {}
-   recognition = null;
+  try { recognition.stop(); } catch(e) {}
+  recognition = null;
  }
  messages.innerHTML = '';
  history = [];
  turns = 0;
  finished = false;
+ chatStage = 0;
  input.disabled = false;
  input.value = '';
  input.placeholder = 'Gõ hoặc bấm micro để nói với tớ...';
  lastOpening = chooseDifferent(openings, lastOpening);
- const opening = openings[lastOpening];
- addMessage(opening);
+ addMessage(openings[lastOpening]);
  updateProgress();
  setQuick([
   'Pin mặt trời tạo điện như thế nào?',
@@ -251,24 +264,23 @@ function startConversation() {
 }
 
 function isEnvironmentAction(t) {
- const actions = [
-  'giu lop hoc sach', 'giu lop sach', 'lop hoc sach se',
-  'giu sach lop hoc', 'giu ve sinh', 've sinh moi truong',
-  'bao ve moi truong', 'bao ve trai dat', 'nhat rac',
-  'bo rac dung noi', 'bo rac vao thung', 'khong xa rac',
-  'khong vut rac', 'trong cay', 'cham soc cay', 'tuoi cay',
-  'tiet kiem dien', 'tat den', 'tat quat', 'phan loai rac',
-  'don dep lop', 'don dep truong', 'quet lop', 'quet san',
-  'giu truong sach', 'san truong sach', 'thu gom rac',
-  'han che tui nilon', 'tai su dung', 'khong lam ban',
-  'nhac ban khong xa rac', 'su dung nang luong sach',
-  'trong them cay', 'nhat giay', 'khong xa thai',
-  'giu moi truong sach', 'khong lam o nhiem',
-  'khong xa rac bua bai', 'giu gin ve sinh', 'don rac',
-  'khong vut giay', 'giu lop hoc gon gang', 'cham soc vuon truong',
-  'tiet kiem nuoc', 'khoa voi nuoc', 'dung binh nuoc ca nhan'
- ];
- return has(t, actions);
+ return has(t, [
+  'giu lop hoc sach','giu lop sach','lop hoc sach se',
+  'giu sach lop hoc','giu ve sinh','ve sinh moi truong',
+  'bao ve moi truong','bao ve trai dat','nhat rac',
+  'bo rac dung noi','bo rac vao thung','khong xa rac',
+  'khong vut rac','trong cay','cham soc cay','tuoi cay',
+  'tiet kiem dien','tat den','tat quat','phan loai rac',
+  'don dep lop','don dep truong','quet lop','quet san',
+  'giu truong sach','san truong sach','thu gom rac',
+  'han che tui nilon','tai su dung','khong lam ban',
+  'nhac ban khong xa rac','su dung nang luong sach',
+  'trong them cay','nhat giay','khong xa thai',
+  'giu moi truong sach','khong lam o nhiem',
+  'giu gin ve sinh','don rac','giu lop hoc gon gang',
+  'cham soc vuon truong','tiet kiem nuoc','dung binh nuoc ca nhan',
+  'khong xa rac bua bai','khong vut giay','khoa voi nuoc'
+ ]);
 }
 
 function isUncertain(t) {
@@ -278,33 +290,51 @@ function isUncertain(t) {
  ]);
 }
 
+function environmentReply() {
+ const actions = [
+  'Em hãy cố gắng giữ lớp học sạch sẽ, bỏ rác đúng nơi và cùng mọi người bảo vệ môi trường nhé.',
+  'Rất tốt! Em hãy duy trì thói quen tốt ấy để trường học và nơi ở luôn xanh, sạch, đẹp nhé.',
+  'Câu trả lời rất thiết thực! Hãy bắt đầu từ những việc nhỏ như giữ vệ sinh lớp học, không xả rác và chăm sóc cây xanh nhé.',
+  'Tớ rất vui vì em đã biết cách bảo vệ môi trường. Hãy thực hiện việc em vừa nêu và khuyến khích mọi người cùng làm nhé.'
+ ];
+ const endings = [
+  'Cảm ơn em đã cùng tớ khám phá năng lượng Mặt Trời hôm nay. Tạm biệt em, hẹn gặp lại!',
+  'Mỗi hành động nhỏ đều có ích cho Trái Đất. Chúc em học tốt và luôn yêu thiên nhiên nhé. Tạm biệt em!',
+  'Em hãy cùng gia đình và bạn bè giữ gìn môi trường sống nhé. Tớ chào em và hẹn gặp lại trong hành trình khám phá tiếp theo!'
+ ];
+ finished = true;
+ chatStage = 3;
+ return actions[Math.floor(Math.random()*actions.length)] + ' ' +
+        endings[Math.floor(Math.random()*endings.length)];
+}
+
 function localReply(text) {
  const t = norm(text);
- const previousUser = norm(history.filter(m => m.role === 'user').slice(-2,-1)[0]?.content || '');
 
- const greetings = ['xin chao','chao ban','chao mat troi nhi','hello','hi'];
- if (has(t, greetings)) {
+ // Giai đoạn kết thúc: phản hồi về hành động bảo vệ môi trường.
+ if (chatStage === 2) {
+  return environmentReply();
+ }
+
+ if (isEnvironmentAction(t)) {
+  return environmentReply();
+ }
+
+ if (has(t, ['xin chao','chao ban','hello','hi'])) {
   return 'Chào em! Tớ rất vui được trò chuyện cùng em. Theo em, năng lượng Mặt Trời có thể giúp ích gì cho con người?';
  }
 
  if (has(t, ['tam biet','hen gap lai','ket thuc'])) {
+  finished = true;
+  chatStage = 3;
   return 'Tạm biệt em! Cảm ơn em đã cùng tớ khám phá năng lượng Mặt Trời. Chúc em luôn chăm học và cùng mọi người giữ gìn môi trường xanh, sạch, đẹp nhé.';
  }
 
- if (isEnvironmentAction(t)) {
-  finished = true;
-  return 'Rất tốt! Em hãy cố gắng thực hiện việc đó để góp phần bảo vệ môi trường nhé. Những hành động nhỏ như giữ lớp học sạch sẽ, bỏ rác đúng nơi và chăm sóc cây xanh giúp môi trường sống xanh, sạch, đẹp hơn. Cảm ơn em đã cùng tớ khám phá hôm nay. Tạm biệt em, hẹn gặp lại!';
- }
-
- if (has(t, ['bao ve moi truong','giu gin moi truong','moi truong sach','lam gi de bao ve','hanh dong bao ve'])) {
-  return 'Chúng ta có thể bắt đầu từ những việc nhỏ như giữ lớp học sạch sẽ, bỏ rác đúng nơi, chăm sóc cây xanh và tiết kiệm điện. Em hãy chọn một việc em có thể thực hiện ngay hôm nay nhé.';
- }
-
  if (isUncertain(t)) {
-  if (turns >= 3) {
-   return 'Không sao, tớ gợi ý nhé. Em có thể giữ lớp học sạch sẽ, bỏ rác đúng nơi, chăm sóc cây xanh hoặc tiết kiệm điện. Em muốn chọn việc nào để góp phần bảo vệ môi trường?';
+  if (chatStage >= 2) {
+   return environmentReply();
   }
-  return 'Không sao, chúng mình cùng tìm hiểu nhé. Pin mặt trời có thể chuyển ánh sáng Mặt Trời thành điện năng, còn cây xanh cần ánh sáng để quang hợp. Em muốn kể tên một thiết bị dùng điện hay nói về cây xanh trước?';
+  return 'Không sao, chúng mình cùng tìm hiểu nhé. Pin mặt trời có thể chuyển ánh sáng Mặt Trời thành điện năng, còn cây xanh cần ánh sáng để quang hợp. Em thử kể tên một thiết bị sử dụng điện nhé.';
  }
 
  if (has(t, ['phoi do','lam nong nuoc','lam muoi','phoi thoc'])) {
@@ -312,26 +342,33 @@ function localReply(text) {
  }
 
  if (has(t, ['pin mat troi','tao ra dien','dien mat troi','dien nang','den','quat','may tinh','ti vi','tivi','dien thoai','thiet bi','nang luong mat troi giup'])) {
-  const correct = has(t, ['dien','den','quat','may tinh','ti vi','tivi','dien thoai','thiet bi','tao ra']);
-  const reply = correct
+  const reply = has(t, ['dien','den','quat','may tinh','ti vi','tivi','dien thoai','thiet bi','tao ra'])
    ? 'Đúng rồi! Pin mặt trời chuyển ánh sáng Mặt Trời thành điện năng để cung cấp cho đèn, quạt và một số thiết bị phù hợp.'
    : 'Pin mặt trời có thể chuyển ánh sáng Mặt Trời thành điện năng để một số thiết bị hoạt động.';
+  chatStage = 1;
   lastPlantQuestion = chooseDifferent(plantQuestions, lastPlantQuestion);
   return reply + ' ' + plantQuestions[lastPlantQuestion];
  }
 
  if (has(t, ['quang hop','cay xanh','cay can anh sang','chat dinh duong','phat trien cua cay','thieu anh sang'])) {
-  const correct = has(t, ['quang hop','chat dinh duong','phat trien','cay can anh sang']);
-  const reply = correct
-   ? 'Chính xác! Ánh sáng Mặt Trời giúp cây xanh quang hợp, tạo chất dinh dưỡng và phát triển.'
-   : 'Cây xanh cần ánh sáng Mặt Trời để quang hợp và tạo chất dinh dưỡng.';
-  lastLifeQuestion = chooseDifferent(lifeQuestions, lastLifeQuestion);
-  return reply + ' ' + lifeQuestions[lastLifeQuestion];
+  const replies = [
+   'Chính xác! Ánh sáng Mặt Trời giúp cây xanh quang hợp và tạo chất dinh dưỡng.',
+   'Em trả lời rất tốt! Cây xanh cần ánh sáng Mặt Trời để quang hợp và phát triển.',
+   'Đúng rồi! Nhờ ánh sáng Mặt Trời, cây xanh có thể quang hợp và tạo ra chất dinh dưỡng.'
+  ];
+  const explanations = [
+   'Không có năng lượng Mặt Trời, Trái Đất sẽ dần lạnh giá, cây xanh không thể quang hợp bình thường, con người thiếu thức ăn và nhiều sinh vật không thể tồn tại. Vì vậy, năng lượng Mặt Trời rất cần thiết cho sự sống trên Trái Đất. Vì thế, chúng ta cần biết giữ gìn vệ sinh môi trường. Theo em, chúng ta nên làm gì để bảo vệ môi trường sống?',
+   'Nếu không có năng lượng Mặt Trời, Trái Đất sẽ dần lạnh giá, cây xanh khó quang hợp bình thường, con người sẽ thiếu thức ăn và nhiều sinh vật không thể tồn tại. Bởi vậy, năng lượng Mặt Trời vô cùng cần thiết cho sự sống trên Trái Đất. Chúng ta hãy cùng giữ gìn vệ sinh môi trường nhé. Em có thể làm gì để bảo vệ môi trường sống?',
+   'Nếu thiếu năng lượng Mặt Trời, Trái Đất sẽ dần lạnh giá, cây xanh không thể quang hợp bình thường, con người thiếu thức ăn và nhiều sinh vật không thể tồn tại. Do đó, năng lượng Mặt Trời rất quan trọng đối với sự sống trên Trái Đất. Chúng ta cần giữ môi trường sạch đẹp. Theo em, học sinh có thể làm gì để bảo vệ môi trường?'
+  ];
+  chatStage = 2;
+  return replies[Math.floor(Math.random()*replies.length)] + ' ' +
+         explanations[Math.floor(Math.random()*explanations.length)];
  }
 
- if (has(t, ['su song','con nguoi','dong vat','sinh vat','oxy','khong khi','thuc an','chuoi thuc an','cay xanh co ich'])) {
-  lastEnvironmentQuestion = chooseDifferent(environmentQuestions, lastEnvironmentQuestion);
-  return 'Đúng rồi, cây xanh và nhiều sinh vật có mối liên hệ với nhau. Ánh sáng Mặt Trời góp phần duy trì sự sống trên Trái Đất. ' + environmentQuestions[lastEnvironmentQuestion];
+ if (has(t, ['su song','con nguoi','dong vat','sinh vat','oxy','khong khi','thuc an','cay xanh co ich'])) {
+  chatStage = 2;
+  return 'Cây xanh cung cấp thức ăn và góp phần duy trì sự sống của nhiều sinh vật. Không có năng lượng Mặt Trời, Trái Đất sẽ dần lạnh giá, cây xanh không thể quang hợp bình thường, con người thiếu thức ăn và nhiều sinh vật không thể tồn tại. Vì vậy, chúng ta cần giữ gìn vệ sinh môi trường. Theo em, chúng ta có thể làm gì để bảo vệ môi trường sống?';
  }
 
  if (has(t, ['vi sao','tai sao','giai thich','the nao','nhu the nao'])) {
@@ -346,16 +383,12 @@ function localReply(text) {
   return 'Những việc em nói có thể góp phần làm môi trường tốt hơn. Em hãy nói rõ một hành động cụ thể, chẳng hạn giữ lớp học sạch sẽ, bỏ rác đúng nơi, chăm sóc cây xanh hoặc tiết kiệm điện nhé.';
  }
 
- if (previousUser && has(t, ['co','dung','vang','khong','vi','nen','duoc'])) {
-  return 'Cảm ơn em đã trả lời. Mặt Trời giúp tạo ra điện nhờ pin mặt trời và giúp cây xanh quang hợp. Theo em, chúng ta nên làm gì để giữ môi trường sống sạch đẹp?';
- }
-
  return 'Cảm ơn em đã chia sẻ. Pin mặt trời có thể biến ánh sáng thành điện năng, còn ánh sáng Mặt Trời giúp cây xanh quang hợp. Em nghĩ chúng ta có thể làm gì để bảo vệ môi trường sống?';
 }
 
 async function getReply(text) {
- // Bản miễn phí: không gọi API, không phát sinh chi phí.
- return { answer: localReply(text), mode: 'local' };
+ // Hoạt động miễn phí, không gọi API bên ngoài.
+ return {answer:localReply(text),mode:'local'};
 }
 
 async function send(text) {
@@ -366,30 +399,32 @@ async function send(text) {
  input.value = '';
  setQuick([]);
  turns++;
- history.push({ role:'user', content:text });
+ history.push({role:'user',content:text});
  updateProgress();
 
- const reply = await getReply(text);
- addMessage(reply.answer, 'bot', true);
- history.push({ role:'assistant', content:reply.answer });
+ const loading = addMessage('Tớ đang suy nghĩ cùng em nhé…', 'bot', false);
+ const result = await getReply(text);
+ loading.querySelector('.bubble').textContent = result.answer;
+ history.push({role:'assistant',content:result.answer});
 
- status.textContent = finished ? 'Đã hoàn thành trò chuyện' : 'Đang trò chuyện học tập';
+ speak(result.answer);
+ status.textContent = finished ? 'Đã hoàn thành bài học' : 'Sẵn sàng trò chuyện';
 
  if (finished) {
   input.disabled = true;
   input.placeholder = 'Bấm “Bắt đầu lại” để trò chuyện lần nữa';
   setQuick(['Bắt đầu cuộc trò chuyện mới']);
- } else if (turns < 5) {
-  setQuick(['Em chưa biết','Cho em gợi ý']);
+ } else if (chatStage === 0) {
+  setQuick(['Pin mặt trời tạo điện như thế nào?','Cây xanh cần ánh sáng để làm gì?','Em chưa biết']);
+ } else if (chatStage === 1) {
+  setQuick(['Cây xanh quang hợp','Cây xanh cần ánh sáng để làm gì?','Em chưa biết']);
+ } else if (chatStage === 2) {
+  setQuick(['Giữ lớp học sạch sẽ','Bỏ rác đúng nơi','Trồng và chăm sóc cây']);
  }
 }
 
 $('#chatForm').addEventListener('submit', event => {
  event.preventDefault();
- if (input.value.trim() === 'Bắt đầu cuộc trò chuyện mới') {
-  startConversation();
-  return;
- }
  send(input.value);
 });
 
@@ -414,7 +449,7 @@ $('#micBtn').addEventListener('click', () => {
  status.textContent = 'Đang lắng nghe. Em hãy nói nhé.';
 
  recognition.onresult = event => {
-  // Chỉ chép lời nói vào ô nhập, không gửi tự động.
+  // Chỉ nhập lời nói, không gửi tự động.
   input.value = event.results[0][0].transcript;
   input.focus();
   status.textContent = 'Hãy kiểm tra câu trả lời rồi nhấn Gửi.';
@@ -432,30 +467,18 @@ $('#micBtn').addEventListener('click', () => {
 
  try {
   recognition.start();
- } catch (e) {
+ } catch (error) {
   recognition = null;
   $('#micBtn').classList.remove('listening');
   status.textContent = 'Không thể bật micro. Em hãy thử lại.';
  }
 });
 
-function notify(text) {
- toast.textContent = text;
- toast.classList.add('show');
- setTimeout(() => toast.classList.remove('show'), 2800);
-}
-
 $('#speakToggle').addEventListener('change', () => {
  if (!$('#speakToggle').checked && 'speechSynthesis' in window) {
   speechSynthesis.cancel();
  }
 });
-
-document.addEventListener('pointerdown', () => {
- if ('speechSynthesis' in window && !speechUnlocked) {
-  speechSynthesis.getVoices();
- }
-}, { once:true });
 
 if ('speechSynthesis' in window) {
  speechSynthesis.getVoices();
